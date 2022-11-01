@@ -16,6 +16,8 @@ export default defineComponent({
       count: 0,
       weather: "sunny",
       backgroundColor: "red",
+      cpCounter: 0,
+      animals: ["Dog", "Cat"],
     };
   },
   methods: {
@@ -32,6 +34,11 @@ export default defineComponent({
       } else {
         this.backgroundColor = "red";
       }
+    },
+  },
+  computed: {
+    animal(): string {
+      return this.animals[this.cpCounter % 2];
     },
   },
 });
@@ -74,5 +81,9 @@ export default defineComponent({
 
     <h1 :style="{ 'background-color': backgroundColor }">{{ title }}</h1>
     <button @click="changeBackgroundColor">Change Background Color</button>
+
+    <h1>Why use Computer Property?</h1>
+    <p>Powered by computed property: {{ animal }}</p>
+    <button @click="cpCounter += 1">TestComputerProperty</button>
   </div>
 </template>
