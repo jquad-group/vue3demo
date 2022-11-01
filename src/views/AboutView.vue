@@ -1,10 +1,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MyCustomComponent from "../components/MyCustomComponent.vue";
+import ReviewForm from "../components/ReviewForm.vue";
+import { Review } from "../data/Review";
+import ReviewList from "../components/ReviewList.vue";
 
 export default defineComponent({
   components: {
     MyCustomComponent,
+    ReviewForm,
+    ReviewList,
   },
   data() {
     return {
@@ -27,6 +32,7 @@ export default defineComponent({
       colorSetTwo: ["purple", "yellow"],
       colorCounter: 0,
       colorFromComponent: "none",
+      reviews: [] as Array<Review>,
     };
   },
   methods: {
@@ -46,6 +52,11 @@ export default defineComponent({
     },
     updateSelectedColor(color: string) {
       this.colorFromComponent = color;
+    },
+    // eslint-disable-next-line
+    addReview(payload: any) {
+      const review = payload as Review;
+      this.reviews.push(review);
     },
   },
   computed: {
@@ -115,4 +126,8 @@ export default defineComponent({
     ></my-custom-component>
     <p>Custom Component end here, selected color {{ colorFromComponent }}</p>
   </div>
+  <p>Review Form</p>
+  <review-form @review-submitted="addReview"></review-form>
+  <p>Review List</p>
+  <review-list :reviews="reviews"></review-list>
 </template>
