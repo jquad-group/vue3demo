@@ -8,6 +8,11 @@ export default defineComponent({
       color: "color: red;",
       inStock: true, // change this attribute to see effect
       inventory: 11, // change this attribute to see effect
+      primeNumbers: ["two", "three", "five", "seven", "eleven"],
+      cars: [
+        { id: 1, color: "red", speed: 100 },
+        { id: 2, color: "blue", speed: 120 },
+      ],
     };
   },
 });
@@ -28,5 +33,15 @@ export default defineComponent({
       v-else-if Less than 10 Cool TShirts In of Stock
     </p>
     <p v-else>v-else Invetory 0, Out of Stock</p>
+
+    <ul>
+      <li v-for="num in primeNumbers" :key="num">{{ num }}</li>
+    </ul>
+
+    <ul>
+      <li v-for="car in cars" :key="car.id">
+        {{ car.color }} car with speed {{ car.speed }}
+      </li>
+    </ul>
   </div>
 </template>
