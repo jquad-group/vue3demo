@@ -13,7 +13,18 @@ export default defineComponent({
         { id: 1, color: "red", speed: 100 },
         { id: 2, color: "blue", speed: 120 },
       ],
+      count: 0,
+      weather: "sunny",
     };
+  },
+  methods: {
+    changeWeather() {
+      if (this.weather === "sunny") {
+        this.weather = "cloudy";
+      } else {
+        this.weather = "sunny";
+      }
+    },
   },
 });
 </script>
@@ -43,5 +54,14 @@ export default defineComponent({
         {{ car.color }} car with speed {{ car.speed }}
       </li>
     </ul>
+
+    <p>Events</p>
+    <p>Count: {{ count }}</p>
+    <button v-on:click="count += 1">Add Plus One</button>
+    <p>Weather: {{ weather }}</p>
+    <button v-on:click="changeWeather">Change Weather</button>
+    <button @click="changeWeather">Change Weather (Short)</button>
+    <p>Hoover over Button</p>
+    <button @mouseover="changeWeather">Change Weather (onHoover)</button>
   </div>
 </template>
