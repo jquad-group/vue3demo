@@ -1,7 +1,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import MyCustomComponent from "../components/MyCustomComponent.vue";
 
 export default defineComponent({
+  components: {
+    MyCustomComponent,
+  },
   data() {
     return {
       title: "This title is from Vue Component data",
@@ -18,6 +22,10 @@ export default defineComponent({
       backgroundColor: "red",
       cpCounter: 0,
       animals: ["Dog", "Cat"],
+      titleOne: "CoolDynamicTitleOne",
+      colorSetOne: ["blue", "red", "green"],
+      colorSetTwo: ["purple", "yellow"],
+      colorCounter: 0,
     };
   },
   methods: {
@@ -85,5 +93,20 @@ export default defineComponent({
     <h1>Why use Computer Property?</h1>
     <p>Powered by computed property: {{ animal }}</p>
     <button @click="cpCounter += 1">TestComputerProperty</button>
+    <br /><br />
+    <button @click="colorCounter += 1">Custom Component Control</button>
+    <p>Custom Component starts here</p>
+    <p></p>
+    <my-custom-component
+      title="First Cool Component"
+      :colors="colorSetOne"
+      :counter="colorCounter"
+    ></my-custom-component>
+    <my-custom-component
+      title="Second Even Cooler Component"
+      :colors="colorSetTwo"
+      :counter="colorCounter"
+    ></my-custom-component>
+    <br /><br />
   </div>
 </template>
