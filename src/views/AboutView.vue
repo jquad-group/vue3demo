@@ -15,6 +15,7 @@ export default defineComponent({
       ],
       count: 0,
       weather: "sunny",
+      backgroundColor: "red",
     };
   },
   methods: {
@@ -23,6 +24,13 @@ export default defineComponent({
         this.weather = "cloudy";
       } else {
         this.weather = "sunny";
+      }
+    },
+    changeBackgroundColor() {
+      if (this.backgroundColor === "red") {
+        this.backgroundColor = "blue";
+      } else {
+        this.backgroundColor = "red";
       }
     },
   },
@@ -63,5 +71,8 @@ export default defineComponent({
     <button @click="changeWeather">Change Weather (Short)</button>
     <p>Hoover over Button</p>
     <button @mouseover="changeWeather">Change Weather (onHoover)</button>
+
+    <h1 :style="{ 'background-color': backgroundColor }">{{ title }}</h1>
+    <button @click="changeBackgroundColor">Change Background Color</button>
   </div>
 </template>
