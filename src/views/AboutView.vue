@@ -26,6 +26,7 @@ export default defineComponent({
       colorSetOne: ["blue", "red", "green"],
       colorSetTwo: ["purple", "yellow"],
       colorCounter: 0,
+      colorFromComponent: "none",
     };
   },
   methods: {
@@ -42,6 +43,9 @@ export default defineComponent({
       } else {
         this.backgroundColor = "red";
       }
+    },
+    updateSelectedColor(color: string) {
+      this.colorFromComponent = color;
     },
   },
   computed: {
@@ -101,12 +105,14 @@ export default defineComponent({
       title="First Cool Component"
       :colors="colorSetOne"
       :counter="colorCounter"
+      @select-color="updateSelectedColor"
     ></my-custom-component>
     <my-custom-component
       title="Second Even Cooler Component"
       :colors="colorSetTwo"
       :counter="colorCounter"
+      @select-color="updateSelectedColor"
     ></my-custom-component>
-    <br /><br />
+    <p>Custom Component end here, selected color {{ colorFromComponent }}</p>
   </div>
 </template>
