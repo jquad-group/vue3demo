@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 
 // step 2. Creating the Vue App
 const stateTitle = reactive({ title: "This title is from Vue Component data" });
@@ -36,6 +36,12 @@ function changeBackgroundColor() {
     stateStyle.backgroundColor = "red";
   }
 }
+
+// step 8. Computed Properties
+const stateComputed = reactive({ counter: 0, animals: ["Dog", "Cat"] });
+const animal = computed(() => {
+  return stateComputed.animals[stateComputed.counter % 2];
+});
 </script>
 
 <template>
@@ -81,5 +87,9 @@ function changeBackgroundColor() {
       {{ stateStyle.title }}
     </h1>
     <button @click="changeBackgroundColor">Change Background Color</button>
+
+    <h1>Why use Computed Property?</h1>
+    <p>Powered by computed property: {{ animal }}</p>
+    <button @click="stateComputed.counter += 1">TestComputerProperty</button>
   </div>
 </template>
