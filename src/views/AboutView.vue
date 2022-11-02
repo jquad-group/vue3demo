@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, me } from "vue";
 
 // step 2. Creating the Vue App
 const stateTitle = reactive({ title: "This title is from Vue Component data" });
@@ -13,6 +13,16 @@ const cars = reactive([
   { id: 1, color: "red", speed: 100 },
   { id: 2, color: "blue", speed: 120 },
 ]);
+// step 6. Event Handling
+const stateWeather = reactive({ count: 0, weather: "sunny" });
+
+function changeWeather() {
+  if (stateWeather.weather === "sunny") {
+    stateWeather.weather = "cloudy";
+  } else {
+    stateWeather.weather = "sunny";
+  }
+}
 </script>
 
 <template>
@@ -44,5 +54,14 @@ const cars = reactive([
         {{ car.color }} car with speed {{ car.speed }}
       </li>
     </ul>
+
+    <p>Events</p>
+    <p>Count: {{ stateWeather.count }}</p>
+    <button v-on:click="stateWeather.count += 1">Add Plus One</button>
+    <p>Weather: {{ stateWeather.weather }}</p>
+    <button v-on:click="changeWeather">Change Weather</button>
+    <button @click="changeWeather">Change Weather (Short)</button>
+    <p>Hoover over Button</p>
+    <button @mouseover="changeWeather">Change Weather (onHoover)</button>
   </div>
 </template>
