@@ -7,6 +7,12 @@ const stateTitle = reactive({ title: "This title is from Vue Component data" });
 const stateTitleColor = reactive({ color: "color: red;" });
 // step 4. Conditional Rendering
 const stateStock = reactive({ inStock: true, inventory: 11 }); // change inStock and inventory to see effect
+// step 5. List Rendering
+const primeNumbers = reactive(["two", "three", "five", "seven", "eleven"]);
+const cars = reactive([
+  { id: 1, color: "red", speed: 100 },
+  { id: 2, color: "blue", speed: 120 },
+]);
 </script>
 
 <template>
@@ -28,5 +34,15 @@ const stateStock = reactive({ inStock: true, inventory: 11 }); // change inStock
       v-else-if Less than 10 Cool TShirts In of Stock
     </p>
     <p v-else>v-else Invetory 0, Out of Stock</p>
+
+    <ul>
+      <li v-for="num in primeNumbers" :key="num">{{ num }}</li>
+    </ul>
+
+    <ul>
+      <li v-for="car in cars" :key="car.id">
+        {{ car.color }} car with speed {{ car.speed }}
+      </li>
+    </ul>
   </div>
 </template>
