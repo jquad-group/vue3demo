@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { reactive, computed } from "vue";
+import MyCustomComponent from "../components/MyCustomComponent.vue";
 
 // step 2. Creating the Vue App
 const stateTitle = reactive({ title: "This title is from Vue Component data" });
@@ -41,6 +42,14 @@ function changeBackgroundColor() {
 const stateComputed = reactive({ counter: 0, animals: ["Dog", "Cat"] });
 const animal = computed(() => {
   return stateComputed.animals[stateComputed.counter % 2];
+});
+
+// 9. Components and Props
+const stateCustomComponent = reactive({
+  titleOne: "CoolDynamicTitleOne",
+  colorSetOne: ["blue", "red", "green"],
+  colorSetTwo: ["purple", "yellow"],
+  colorCounter: 0,
 });
 </script>
 
@@ -91,5 +100,23 @@ const animal = computed(() => {
     <h1>Why use Computed Property?</h1>
     <p>Powered by computed property: {{ animal }}</p>
     <button @click="stateComputed.counter += 1">TestComputerProperty</button>
+
+    <br /><br />
+    <button @click="stateCustomComponent.colorCounter += 1">
+      Custom Component Control
+    </button>
+    <p>Custom Component starts here</p>
+    <p></p>
+    <my-custom-component
+      title="First Cool Component"
+      :colors="stateCustomComponent.colorSetOne"
+      :counter="stateCustomComponent.colorCounter"
+    ></my-custom-component>
+    <my-custom-component
+      title="Second Even Cooler Component"
+      :colors="stateCustomComponent.colorSetTwo"
+      :counter="stateCustomComponent.colorCounter"
+    ></my-custom-component>
+    <br /><br />
   </div>
 </template>
