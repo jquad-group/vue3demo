@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { reactive, computed } from "vue";
 import MyCustomComponent from "../components/MyCustomComponent.vue";
+import ReviewForm from "../components/ReviewForm.vue";
+import ReviewList from "../components/ReviewList.vue";
+import Review from "../data/Review";
 
 // step 2. Creating the Vue App
 const stateTitle = reactive({ title: "This title is from Vue Component data" });
@@ -56,6 +59,16 @@ const stateCustomComponent = reactive({
 const stateEvents = reactive({ colorFromComponent: "none" });
 function updateSelectedColor(color: string) {
   stateEvents.colorFromComponent = color;
+}
+
+// 11. Forms and vmodel
+const stateReviews = reactive({
+  reviews: [] as Array<Review>,
+});
+
+function addReview(review: Review) {
+  //const review = payload as Review;
+  stateReviews.reviews.push(review);
 }
 </script>
 
@@ -130,4 +143,8 @@ function updateSelectedColor(color: string) {
       {{ stateEvents.colorFromComponent.toUpperCase() }}
     </p>
   </div>
+  <p>Review Form</p>
+  <review-form @review-submitted="addReview"></review-form>
+  <p>Review List</p>
+  <review-list :reviews="stateReviews.reviews"></review-list>
 </template>
