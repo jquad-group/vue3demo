@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive, me } from "vue";
+import { reactive } from "vue";
 
 // step 2. Creating the Vue App
 const stateTitle = reactive({ title: "This title is from Vue Component data" });
@@ -21,6 +21,19 @@ function changeWeather() {
     stateWeather.weather = "cloudy";
   } else {
     stateWeather.weather = "sunny";
+  }
+}
+
+// step 7. Class and Style Binding
+const stateStyle = reactive({
+  backgroundColor: "red",
+  title: "Title with changing COLOR :)",
+});
+function changeBackgroundColor() {
+  if (stateStyle.backgroundColor === "red") {
+    stateStyle.backgroundColor = "green";
+  } else {
+    stateStyle.backgroundColor = "red";
   }
 }
 </script>
@@ -63,5 +76,10 @@ function changeWeather() {
     <button @click="changeWeather">Change Weather (Short)</button>
     <p>Hoover over Button</p>
     <button @mouseover="changeWeather">Change Weather (onHoover)</button>
+
+    <h1 :style="{ 'background-color': stateStyle.backgroundColor }">
+      {{ stateStyle.title }}
+    </h1>
+    <button @click="changeBackgroundColor">Change Background Color</button>
   </div>
 </template>
