@@ -51,6 +51,12 @@ const stateCustomComponent = reactive({
   colorSetTwo: ["purple", "yellow"],
   colorCounter: 0,
 });
+
+// 10. Communicating Events
+const stateEvents = reactive({ colorFromComponent: "none" });
+function updateSelectedColor(color: string) {
+  stateEvents.colorFromComponent = color;
+}
 </script>
 
 <template>
@@ -111,12 +117,17 @@ const stateCustomComponent = reactive({
       title="First Cool Component"
       :colors="stateCustomComponent.colorSetOne"
       :counter="stateCustomComponent.colorCounter"
+      @select-color="updateSelectedColor"
     ></my-custom-component>
     <my-custom-component
       title="Second Even Cooler Component"
       :colors="stateCustomComponent.colorSetTwo"
       :counter="stateCustomComponent.colorCounter"
+      @select-color="updateSelectedColor"
     ></my-custom-component>
-    <br /><br />
+    <p>
+      Custom Component end here, selected color
+      {{ stateEvents.colorFromComponent.toUpperCase() }}
+    </p>
   </div>
 </template>
