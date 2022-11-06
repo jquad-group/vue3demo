@@ -1,5 +1,5 @@
 import AppHeader from "@/components/AppHeader.vue";
-import { mount, shallowMount } from "@vue/test-utils";
+import { mount} from "@vue/test-utils";
 import { reactive } from "vue";
 
 describe("AppHeader", () => {
